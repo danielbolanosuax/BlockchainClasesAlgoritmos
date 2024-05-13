@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadena Completa</title>
+</head>
+<body>
+    <h1>Cadena de Bloques Completa</h1>
+    <ul>
+        {% for block in chain %}
+        <li>
+            Índice: {{ block.index }}, Prueba: {{ block.proof }}, Hash Previo: {{ block.previous_hash }}, Transacciones: {{ block.transactions | length }}
+            <ul>
+                {% for transaction in block.transactions %}
+                <li>De: {{ transaction.sender }} a {{ transaction.recipient }}, Cantidad: {{ transaction.amount }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>

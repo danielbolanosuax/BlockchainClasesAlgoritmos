@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Bloque Minado</title>
+</head>
+<body>
+    <h1>{{ response['message'] }}</h1>
+    <p>Índice del bloque: {{ response['index'] }}</p>
+    <p>Prueba: {{ response['proof'] }}</p>
+    <p>Hash anterior: {{ response['previous_hash'] }}</p>
+    <ul>
+        <h3>Transacciones:</h3>
+        {% for transaction in response['transactions'] %}
+        <li>
+            De: {{ transaction['sender'] }} a {{ transaction['recipient'] }}, Cantidad: {{ transaction['amount'] }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
