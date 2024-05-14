@@ -3,23 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Bloque Minado</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>{{ response.message }}</h1>
-        <p>Índice del bloque: {{ response.index }}</p>
-        <p>Prueba: {{ response.proof }}</p>
-        <p>Hash anterior: {{ response.previous_hash }}</p>
-        <ul>
-            <h3>Transacciones:</h3>
-            {% for transaction in response.transactions %}
-            <li>
-                De: {{ transaction.sender }} a {{ transaction.recipient }}, Cantidad: {{ transaction.amount }}
-            </li>
-            {% endfor %}
-        </ul>
-        <a href="/">Volver al inicio</a>
+        <h1 class="my-4">{{ response.message }}</h1>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Índice del bloque: {{ response.index }}</h5>
+                <p class="card-text">Prueba: {{ response.proof }}</p>
+                <p class="card-text">Hash anterior: {{ response.previous_hash }}</p>
+                <h5>Transacciones:</h5>
+                <ul class="list-group">
+                    {% for transaction in response.transactions %}
+                    <li class="list-group-item">
+                        <strong>De:</strong> {{ transaction.sender }} <br>
+                        <strong>A:</strong> {{ transaction.recipient }} <br>
+                        <strong>Cantidad:</strong> {{ transaction.amount }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <a href="/" class="btn btn-link mt-3">Volver al inicio</a>
     </div>
 </body>
 </html>

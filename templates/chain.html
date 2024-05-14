@@ -3,21 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Cadena Completa</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Cadena de Bloques Completa</h1>
-    <ul>
-        {% for block in chain %}
-        <li>
-            Índice: {{ block.index }}, Prueba: {{ block.proof }}, Hash Previo: {{ block.previous_hash }}, Transacciones: {{ block.transactions | length }}
-            <ul>
-                {% for transaction in block.transactions %}
-                <li>De: {{ transaction.sender }} a {{ transaction.recipient }}, Cantidad: {{ transaction.amount }}</li>
-                {% endfor %}
-            </ul>
-        </li>
-        {% endfor %}
-    </ul>
-    <a href="/">Volver al inicio</a>
+    <div class="container">
+        <h1 class="my-4">Cadena Completa</h1>
+        <div class="accordion" id="blockchainAccordion">
+            {% for block in chain %}
+            <div class="card">
+                <div class="card-header" id="heading{{ block.index }}">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{ block.index }}" aria-expanded="true" aria-controls="collapse{{ block.index }}">
+                            Bloque #{{ block.index }}
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapse{{ block.index }}" class="collapse {% if loop.first %}show{% endif %}" aria-labelledby="heading{{ block.index }}" data-parent="#blockchainAccordion">
+                    <div class="card-body">
+                        <p><strong>Índice:</strong> {{ block.index }}</p>
+                        <p><strong>Prueba:</strong> {{ block.proof }}</p>
+                        <p><strong>Hash anterior:</strong> {{ block.previous_hash }}</p>
+                        <h5>Transacciones:</h5>
+                        <ul class="list-group">
+                            {% for transaction in block.transactions %}
+                            <li class="list-group-item">
+                                <strong>De:</strong> {{ transaction.sender }} <br>
+                                <strong>A:</strong> {{ transaction.recipient }} <br>
+                                <strong>Cantidad:</strong> {{ transaction.amount }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="/" class="btn btn-link mt-3">Volver al inicio</a>
+    </div>
+    <!-- Incluir archivos JavaScript de Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
