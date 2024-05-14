@@ -35,9 +35,13 @@ def mine():
     # Usamos una plantilla para mostrar el bloque minado
     return render_template('mine.html', response=response)
 
+@app.route('/transactions/new', methods=['GET'])
+def new_transaction_form():
+    return render_template('new_transaction.html')
+
 @app.route('/transactions/new', methods=['POST'])
 def new_transaction():
-    values = request.get_json()
+    values = request.form  # Usar request.form para obtener datos del formulario
     required = ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
         return 'Missing values', 400
