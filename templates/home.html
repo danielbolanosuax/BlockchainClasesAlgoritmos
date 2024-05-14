@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio Blockchain</title>
+    <!-- Incluir el archivo CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Bienvenido a la Blockchain</h1>
-    <p>Acciones:</p>
-    <ul>
-        <li><a href="/mine">Minar un nuevo bloque</a></li>
-        <li><a href="/chain">Ver la cadena completa</a></li>
-        <li><a href="/transactions/new">Crear una nueva transacción</a></li>
-    </ul>
+    <div class="container">
+        <h1 class="my-4">Bienvenido a la Blockchain</h1>
+        <div class="list-group">
+            <a href="/mine" class="list-group-item list-group-item-action">Minar un nuevo bloque</a>
+            <a href="/chain" class="list-group-item list-group-item-action">Ver la cadena completa</a>
+            <a href="/transactions/new" class="list-group-item list-group-item-action">Crear una nueva transacción</a>
+        </div>
+    </div>
 </body>
 </html>

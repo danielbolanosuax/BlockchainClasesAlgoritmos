@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Crear Nueva Transacción</title>
+    <!-- Incluir el archivo CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Incluir tu archivo CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Crear Nueva Transacción</h1>
-    <form action="/transactions/new" method="post">
-        <label for="sender">De:</label>
-        <input type="text" id="sender" name="sender"><br><br>
-        <label for="recipient">A:</label>
-        <input type="text" id="recipient" name="recipient"><br><br>
-        <label for="amount">Cantidad:</label>
-        <input type="number" id="amount" name="amount"><br><br>
-        <input type="submit" value="Crear Transacción">
-    </form>
-    <a href="/">Volver al inicio</a>
+    <div class="container">
+        <h1 class="my-4">Crear Nueva Transacción</h1>
+        <form action="/transactions/new" method="post">
+            <div class="form-group">
+                <label for="sender">De:</label>
+                <input type="text" class="form-control" id="sender" name="sender">
+            </div>
+            <div class="form-group">
+                <label for="recipient">A:</label>
+                <input type="text" class="form-control" id="recipient" name="recipient">
+            </div>
+            <div class="form-group">
+                <label for="amount">Cantidad:</label>
+                <input type="number" class="form-control" id="amount" name="amount">
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Transacción</button>
+        </form>
+        <a href="/" class="btn btn-link mt-3">Volver al inicio</a>
+    </div>
 </body>
 </html>
